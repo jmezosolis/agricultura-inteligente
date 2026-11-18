@@ -337,6 +337,9 @@ export default function App() {
               <button role="tab" aria-selected={enPlantas} className={enPlantas ? 'activo' : ''} onClick={() => irA('/plantas')}>
                 Detectar plantas
               </button>
+              <button role="tab" aria-selected={enHerramientas} className={enHerramientas ? 'activo' : ''} onClick={() => irA('/herramientas')}>
+                Dron
+              </button>
             </div>
             <button type="button" className="icono-ajustes" onClick={() => setAjustes(true)} aria-label="Ajustes" title="Ajustes">
               <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -410,17 +413,6 @@ export default function App() {
           />
         ) : (
           <>
-            <nav className="accesos-campo" aria-label="Más secciones">
-              <button type="button" onClick={() => irA('/lotes')}>
-                Lotes y trazabilidad
-              </button>
-              <button type="button" onClick={() => irA('/mercado')}>
-                Mercado
-              </button>
-              <button type="button" onClick={() => irA('/herramientas')}>
-                Dron y cosecha
-              </button>
-            </nav>
           <Productor
             parcelas={estado.parcelas}
             ofertas={estado.ofertas}
