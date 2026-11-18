@@ -24,6 +24,7 @@ export function HerramientasPagina({ parcelas, imagenes, onAgregarImagen }: Prop
       </header>
 
       <Dron parcelas={parcelas} imagenes={imagenes} onAgregar={onAgregarImagen} />
+      <Biomasa parcelas={parcelas} />
       <Cosecha parcelas={parcelas} />
     </section>
   );
@@ -53,9 +54,19 @@ function Dron({ parcelas, imagenes, onAgregar }: { parcelas: Parcela[]; imagenes
 
   return (
     <section className="herramienta" aria-labelledby="h-dron">
-      <h2 id="h-dron">Imágenes de dron</h2>
+      <h2 id="h-dron">Conectar dron</h2>
+      <div className="dron-estado" role="status">
+        <span className="dron-punto" aria-hidden="true" />
+        <div>
+          <strong>Sin conexión en vivo</strong>
+          <p className="pequeno texto-suave">
+            Por ahora puedes cargar los archivos que exporta el dron. La conexión directa requiere la app del fabricante
+            y su SDK, y todavía no está desarrollada.
+          </p>
+        </div>
+      </div>
       <p className="aviso-pendiente" role="note">
-        Se registra el archivo importado por parcela. El análisis automático de las imágenes está pendiente.
+        El archivo se registra por parcela. El análisis automático de las imágenes está pendiente.
       </p>
       <div className="fila-dos">
         <label className="campo">
@@ -100,6 +111,48 @@ function Dron({ parcelas, imagenes, onAgregar }: { parcelas: Parcela[]; imagenes
           ))}
         </ul>
       )}
+    </section>
+  );
+}
+
+/** Vista visual del volumen de biomasa. No calcula nada: el cálculo requiere fotos procesadas y calibración en campo. */
+function Biomasa({ parcelas }: { parcelas: Parcela[] }) {
+  const [parcelaId, setParcelaId] = useState(parcelas[0]?.id ?? '');
+
+  return (
+    <section className="herramienta" aria-labelledby="h-biomasa">
+      <h2 id="h-biomasa">Volumen de biomasa</h2>
+      <p className="aviso-pendiente" role="note">
+        Vista previa. El cálculo de biomasa no está activo en esta versión.
+      </p>
+      <label className="campo">
+        <span>Parcela</span>
+        <select value={parcelaId} onChange={(e) => setParcelaId(e.target.value)}>
+          {parcelas.length === 0 && <option value="">Sin parcelas</option>}
+          {parcelas.map((p) => (
+            <option key={p.id} value={p.id}>
+              {p.nombre}
+            </option>
+          ))}
+        </select>
+      </label>
+      <div className="biomasa-visual" aria-hidden="true">
+        <svg viewBox="0 0 240 90" role="presentation">
+          <line x1="0" y1="86" x2="240" y2="86" />
+          <rect x="18" y="52" width="22" height="34" rx="4" />
+          <rect x="52" y="38" width="22" height="48" rx="4" />
+          <rect x="86" y="24" width="22" height="62" rx="4" />
+          <rect x="120" y="44" width="22" height="42" rx="4" />
+          <rect x="154" y="30" width="22" height="56" rx="4" />
+          <rect x="188" y="58" width="22" height="28" rx="4" />
+        </svg>
+      </div>
+      <div className="cosecha-resultado">
+        <p className="cifra">
+          — <span className="cifra-unidad">t/ha</span>
+        </p>
+        <p className="pequeno texto-suave">Se mostrará cuando haya fotos del dron procesadas y una calibración con cortes en campo.</p>
+      </div>
     </section>
   );
 }

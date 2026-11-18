@@ -380,9 +380,9 @@ export default function App() {
         ) : enHerramientas ? (
           <HerramientasPagina parcelas={estado.parcelas} imagenes={estado.imagenesDron ?? []} onAgregarImagen={agregarImagenDron} />
         ) : enEnfermedades ? (
-          <DeteccionPagina modo="enfermedad" parcelas={estado.parcelas} />
+          <DeteccionPagina modo="enfermedad" />
         ) : enPlantas ? (
-          <DeteccionPagina modo="planta" parcelas={estado.parcelas} />
+          <DeteccionPagina modo="planta" />
         ) : enLotes ? (
           <LotesPagina
             id={lotesMatch?.[1]}

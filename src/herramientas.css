@@ -78,6 +78,50 @@
   border: 1px solid var(--linea);
 }
 
+.biomasa-visual svg {
+  width: 100%;
+  max-height: 140px;
+  padding: 10px;
+  border-radius: var(--radio-chico);
+  background: var(--fondo);
+  border: 1px solid var(--linea);
+}
+
+.biomasa-visual line {
+  stroke: var(--linea);
+  stroke-width: 2;
+}
+
+.biomasa-visual rect {
+  fill: #bfd7ee;
+  stroke: var(--cobalto-medio);
+  stroke-width: 1.5;
+  opacity: 0.8;
+}
+
+.dron-estado {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 12px;
+  border-radius: var(--radio-chico);
+  background: var(--fondo);
+  border: 1px solid var(--linea);
+}
+
+.dron-estado p {
+  margin: 2px 0 0;
+}
+
+.dron-punto {
+  width: 12px;
+  height: 12px;
+  margin-top: 5px;
+  flex: none;
+  border-radius: 50%;
+  background: #94a3b8;
+}
+
 .cosecha-resultado {
   display: grid;
   gap: 4px;
