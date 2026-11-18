@@ -20,7 +20,9 @@ function urlImagenArea(anillo: Posicion[]): string {
 const PRESETS_VISUALES = {
   natural: { etiqueta: 'Natural', filtro: 'none' },
   contraste: { etiqueta: 'Contraste', filtro: 'contrast(1.3) saturate(1.1)' },
-  falso: { etiqueta: 'Falso color (visual)', filtro: 'saturate(2) hue-rotate(-35deg) contrast(1.2)' },
+  contrasteFuerte: { etiqueta: 'Contraste fuerte', filtro: 'contrast(1.7) saturate(1.2) brightness(0.95)' },
+  infrarrojo: { etiqueta: 'Infrarrojo (visual)', filtro: 'grayscale(1) contrast(1.6) brightness(1.1)' },
+  blancoNegro: { etiqueta: 'Blanco y negro', filtro: 'grayscale(1) contrast(1.25)' },
 } as const;
 type Preset = keyof typeof PRESETS_VISUALES;
 
