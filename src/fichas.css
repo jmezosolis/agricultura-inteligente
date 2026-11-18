@@ -211,3 +211,25 @@
   background: var(--fondo);
   border: 1px solid var(--linea);
 }
+
+.salud-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.salud-presets button {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--linea);
+  background: var(--blanco);
+  color: var(--cobalto);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.salud-presets button.activo {
+  background: var(--cobalto-medio);
+  border-color: var(--cobalto-medio);
+  color: var(--blanco);
+}
