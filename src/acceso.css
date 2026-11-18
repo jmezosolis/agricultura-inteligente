@@ -1,0 +1,60 @@
+/* Página de acceso: mismas tarjetas y paleta que el resto de Agricultura Inteligente. */
+
+.acceso {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 28px 16px 36px;
+  display: grid;
+  gap: 16px;
+}
+
+.acceso h1 {
+  margin: 0;
+  font-size: clamp(1.5rem, 3.4vw, 2rem);
+}
+
+.acceso p {
+  margin: 0;
+}
+
+.acceso-tarjeta {
+  display: grid;
+  gap: 10px;
+  padding: 20px;
+  border-radius: var(--radio);
+  background: var(--blanco);
+  border: 1.5px solid var(--linea);
+  box-shadow: var(--sombra);
+}
+
+.acceso-tarjeta h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.acceso-tarjeta.bloqueada {
+  opacity: 0.75;
+}
+
+/* Accesos secundarios dentro de Parcelas: lotes, mercado y dron/cosecha. */
+.accesos-campo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 1040px;
+  margin: 12px auto 0;
+  padding: 0 16px;
+}
+
+.accesos-campo button {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--linea);
+  background: var(--blanco);
+  color: var(--cobalto);
+  font-weight: 600;
+}
+
+.accesos-campo button:hover {
+  border-color: var(--cobalto-medio);
+}

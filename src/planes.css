@@ -1,0 +1,168 @@
+/* Maqueta de la página de planes: mismos tokens de Agricultura Inteligente. */
+
+.planes {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 20px 16px 32px;
+  display: grid;
+  gap: 20px;
+}
+
+.planes-cabecera {
+  display: grid;
+  gap: 6px;
+  justify-items: start;
+}
+
+.planes-cabecera h1 {
+  margin: 0;
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+  line-height: 1.15;
+}
+
+.planes-cabecera p {
+  margin: 0;
+}
+
+.planes-maqueta {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--chile-suave);
+  color: var(--chile);
+}
+
+.planes-comun {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  padding: 12px 14px;
+  border-radius: var(--radio-chico);
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+}
+
+.planes-comun ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.planes-comun li {
+  font-size: 0.9rem;
+  color: var(--azul-suave);
+}
+
+.planes-comun li::before {
+  content: '✓ ';
+  color: var(--azul-medio);
+  font-weight: 700;
+}
+
+.planes-tarjetas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 800px) {
+  .planes-tarjetas {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+  }
+}
+
+.plan-tarjeta {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 22px;
+  border-radius: var(--radio);
+  background: var(--blanco);
+  border: 1.5px solid var(--linea);
+  box-shadow: var(--sombra);
+}
+
+.plan-tarjeta.destacado {
+  border-color: var(--azul-medio);
+}
+
+.plan-tarjeta h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.plan-tarjeta p {
+  margin: 0;
+}
+
+.plan-etiqueta {
+  position: absolute;
+  top: -11px;
+  left: 22px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--azul-medio);
+  color: var(--blanco);
+}
+
+.plan-precio {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.plan-precio strong {
+  font-family: var(--fuente-titulo);
+  font-size: 1.6rem;
+  color: var(--azul);
+}
+
+.plan-precio span {
+  font-size: 0.9rem;
+  color: var(--azul-suave);
+}
+
+.plan-incluye {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.plan-incluye li {
+  font-size: 0.95rem;
+  padding-left: 22px;
+  position: relative;
+}
+
+.plan-incluye li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--azul-medio);
+  font-weight: 700;
+}
+
+.planes-aviso {
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: var(--radio-chico);
+  background: var(--fondo);
+  border: 1px solid var(--linea);
+}

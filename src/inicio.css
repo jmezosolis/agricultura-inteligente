@@ -1,0 +1,91 @@
+/* Página de inicio de Agricultura Inteligente: presentación, beneficios y accesos rápidos. */
+
+.inicio {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 24px 16px 32px;
+  display: grid;
+  gap: 24px;
+}
+
+.inicio-presentacion {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+}
+
+.inicio-presentacion h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+  line-height: 1.15;
+}
+
+.inicio-presentacion p {
+  margin: 0;
+  max-width: 62ch;
+}
+
+.inicio-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.inicio-beneficios {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 800px) {
+  .inicio-beneficios {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.beneficio {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 10px;
+  padding: 22px 18px;
+  text-align: center;
+  border-radius: var(--radio);
+  background: var(--blanco);
+  border: 1.5px solid var(--linea);
+  box-shadow: var(--sombra);
+}
+
+.beneficio h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.beneficio p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.beneficio-icono {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--fondo);
+  border: 1px solid var(--linea);
+}
+
+.beneficio-icono svg {
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke: var(--azul-medio);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

@@ -1,0 +1,347 @@
+/* Trazabilidad de lotes: lista, alta, ficha, línea de tiempo y página de verificación. */
+
+.lotes-pagina,
+.lote-formulario,
+.lote-ficha-detalle,
+.verificar {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 16px;
+  display: grid;
+  gap: 16px;
+}
+
+.lotes-cabecera,
+.lote-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.lotes-cabecera h1,
+.lote-encabezado h1,
+.verificar h1 {
+  margin: 4px 0;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  line-height: 1.2;
+}
+
+.lotes-pagina .eyebrow,
+.lote-formulario .eyebrow,
+.lote-ficha-detalle .eyebrow,
+.verificar .eyebrow {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.nota-lote {
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(31, 93, 58, 0.08);
+  margin: 0;
+}
+
+/* Fichas de lote */
+.lotes-fichas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.lote-ficha {
+  width: 100%;
+  text-align: left;
+  border: 1px solid rgba(31, 93, 58, 0.18);
+  border-left: 5px solid #8a9a8c;
+  border-radius: 12px;
+  background: #fff;
+  padding: 14px;
+  cursor: pointer;
+  display: grid;
+  gap: 6px;
+  font: inherit;
+  color: inherit;
+}
+
+.lote-ficha:hover,
+.lote-ficha:focus-visible {
+  border-color: #1f5d3a;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(31, 93, 58, 0.18);
+}
+
+.lote-ficha.en-cultivo { border-left-color: #6a9a3c; }
+.lote-ficha.cosechado { border-left-color: #c08a1e; }
+.lote-ficha.entregado { border-left-color: #1f5d3a; }
+
+.lote-ficha-cabeza {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.lote-ficha h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.lote-codigo {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+}
+
+.lote-chip {
+  font-size: 0.72rem;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(31, 93, 58, 0.1);
+  white-space: nowrap;
+}
+
+.lote-datos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 6px 0 0;
+}
+
+.lote-datos dt {
+  font-size: 0.72rem;
+  opacity: 0.7;
+}
+
+.lote-datos dd {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Formularios */
+.lote-formulario,
+.evento-formulario {
+  display: grid;
+  gap: 12px;
+}
+
+.lote-formulario .campo,
+.evento-formulario .campo {
+  display: grid;
+  gap: 4px;
+}
+
+.lote-formulario .campo span,
+.evento-formulario .campo span {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.lote-formulario input,
+.lote-formulario select,
+.evento-formulario input,
+.evento-formulario select {
+  padding: 10px 12px;
+  border: 1px solid rgba(31, 93, 58, 0.3);
+  border-radius: 8px;
+  font: inherit;
+  background: #fff;
+}
+
+.fila-dos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.campo-error {
+  color: #a4291f;
+  margin: 0;
+  font-weight: 600;
+}
+
+.primario.ancho {
+  width: 100%;
+}
+
+/* Ficha: QR y línea de tiempo */
+.lote-grid {
+  display: grid;
+  grid-template-columns: minmax(200px, 260px) 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.lote-qr {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+  padding: 14px;
+  border: 1px solid rgba(31, 93, 58, 0.18);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.lote-qr img {
+  width: 220px;
+  height: 220px;
+  max-width: 100%;
+  image-rendering: pixelated;
+}
+
+.lote-historial {
+  display: grid;
+  gap: 16px;
+}
+
+.lote-historial h2,
+.lote-historial h3 {
+  margin: 0;
+}
+
+.linea-tiempo {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 4px;
+  display: grid;
+  gap: 0;
+  position: relative;
+}
+
+.linea-tiempo::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: rgba(31, 93, 58, 0.25);
+}
+
+.evento {
+  position: relative;
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 10px;
+  padding: 6px 0 14px;
+}
+
+.evento > div {
+  display: grid;
+  gap: 2px;
+}
+
+.evento-punto {
+  width: 12px;
+  height: 12px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background: #6a9a3c;
+  border: 3px solid #f5f2ea;
+  box-shadow: 0 0 0 1px rgba(31, 93, 58, 0.4);
+}
+
+.evento.siembra .evento-punto { background: #6a9a3c; }
+.evento.cosecha .evento-punto { background: #c08a1e; }
+.evento.entrega .evento-punto { background: #1f5d3a; }
+
+.texto-suave {
+  opacity: 0.75;
+  margin: 0;
+}
+
+.pequeno {
+  font-size: 0.85rem;
+}
+
+/* Página de verificación */
+.verificar {
+  padding-top: 32px;
+}
+
+@media (max-width: 720px) {
+  .lote-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fila-dos {
+    grid-template-columns: 1fr;
+  }
+
+  .lote-datos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Periodo de carencia de plaguicidas */
+.carencia-aviso {
+  margin: 4px 0 0;
+  padding: 8px 12px;
+  border-radius: var(--radio-chico);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid;
+}
+
+.carencia-aviso.vigente {
+  background: var(--chile-suave);
+  color: var(--chile);
+  border-color: #f0c4bf;
+}
+
+.carencia-aviso.cumplida {
+  background: #e4f3e8;
+  color: #1f5d3a;
+  border-color: #bfe0c9;
+}
+
+.carencia-linea {
+  color: var(--chile);
+  font-weight: 600;
+}
+
+/* Plaguicida: código de barras y datos de la etiqueta */
+.bloque-plaguicida {
+  display: grid;
+  gap: 12px;
+  padding: 12px;
+  border-radius: var(--radio-chico);
+  background: var(--fondo);
+  border: 1px solid var(--linea);
+}
+
+.fila-codigo {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.fila-codigo input {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.escaner {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border-radius: var(--radio-chico);
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+}
+
+.escaner-video {
+  width: 100%;
+  max-height: 260px;
+  border-radius: var(--radio-chico);
+  background: #000;
+  object-fit: cover;
+}

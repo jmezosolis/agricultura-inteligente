@@ -1,0 +1,1549 @@
+/* ───────────── Tokens ───────────── */
+:root {
+  /* Paleta de GanaID: azul marino y blanco */
+  --azul: #0f2a4a;        /* marino: cabecera, títulos, texto */
+  --azul-suave: #5e7593;  /* texto secundario (steel de GanaID) */
+  --azul-medio: #24487a;  /* acción principal (ink-soft de GanaID) */
+  --azul-hondo: #081b33;  /* hover de acciones */
+  --azul-claro: #9dbbe0;  /* acento sobre fondo marino */
+  --acento: #2f567f;      /* eyebrows y etiquetas */
+  --fondo: #f3f6fb;       /* fondo blanco azulado */
+  --blanco: #ffffff;      /* tarjetas y boleta */
+  --linea: #dce4ef;       /* bordes */
+  --chile: #b3261e;       /* solo alertas de riesgo */
+  --chile-suave: #fbe7e4;
+
+  --fuente-titulo: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --fuente-texto: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --fuente-datos: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --radio: 14px;
+  --radio-chico: 9px;
+  --sombra: 0 1px 2px rgb(15 42 74 / 0.06), 0 8px 24px -12px rgb(15 42 74 / 0.18);
+  --alto-control: 44px;
+}
+
+/* ───────────── Base ───────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--fondo);
+  color: var(--azul);
+  font-family: var(--fuente-texto);
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fuente-titulo);
+  font-weight: 600;
+  font-variation-settings: 'opsz' 72;
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+p {
+  margin: 0;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--acento);
+  outline-offset: 2px;
+}
+
+.mono {
+  font-family: var(--fuente-datos);
+  font-variant-numeric: tabular-nums;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--acento);
+  margin-bottom: 0.35rem;
+}
+
+.texto-suave {
+  color: var(--azul-suave);
+}
+
+.pequeno {
+  font-size: 0.85rem;
+}
+
+.campo-error {
+  color: var(--chile);
+  font-size: 0.9rem;
+  margin: 0.5rem 0 0;
+}
+
+.nota {
+  font-size: 0.9rem;
+  color: var(--azul-suave);
+  margin-top: 0.4rem;
+}
+
+.enlace {
+  background: none;
+  border: 0;
+  padding: 0.5rem 0;
+  color: var(--azul-medio);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* ───────────── Layout ───────────── */
+.app {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.pie-app {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding: 10px 16px;
+  background: var(--azul);
+  color: var(--azul-claro);
+  font-size: 0.85rem;
+}
+
+.pie-marca {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: baseline;
+  color: var(--fondo);
+}
+
+.pie-enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.pie-enlaces a {
+  color: var(--azul-claro);
+  text-decoration: none;
+}
+
+.pie-enlaces a:hover,
+.pie-enlaces a:focus-visible {
+  color: var(--fondo);
+  text-decoration: underline;
+}
+
+.pie-version {
+  opacity: 0.7;
+}
+
+.pie-copia {
+  margin: 0;
+  width: 100%;
+  opacity: 0.7;
+  font-size: 0.78rem;
+}
+
+.cabecera {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  background: var(--azul);
+  color: var(--fondo);
+  flex-wrap: wrap;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: auto;
+}
+
+.marca h1 {
+  font-size: 1rem;
+  color: var(--fondo);
+}
+
+.marca p {
+  font-size: 0.78rem;
+  color: var(--azul-claro);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sello {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.principal {
+  min-height: 0;
+}
+
+/* ───────────── Controles ───────────── */
+button {
+  min-height: var(--alto-control);
+  cursor: pointer;
+  border-radius: var(--radio-chico);
+  padding: 0 16px;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.primario {
+  background: var(--azul-medio);
+  color: #fff;
+  font-weight: 600;
+}
+
+.primario:hover:not(:disabled) {
+  background: var(--azul-hondo);
+}
+
+.secundario {
+  background: var(--blanco);
+  border-color: var(--linea);
+  color: var(--azul);
+  font-weight: 600;
+}
+
+.secundario:hover:not(:disabled) {
+  border-color: var(--azul-suave);
+}
+
+.peligro {
+  background: transparent;
+  color: var(--chile);
+  border-color: transparent;
+  font-weight: 600;
+}
+
+.peligro:hover {
+  background: var(--chile-suave);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--fondo);
+  border: 1px solid rgb(255 255 255 / 0.35);
+}
+
+.ghost:hover {
+  border-color: var(--azul-claro);
+  color: var(--azul-claro);
+}
+
+.ancho {
+  width: 100%;
+}
+
+.segmento {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.1);
+}
+
+.segmento button {
+  min-height: 36px;
+  border-radius: 999px;
+  padding: 0 14px;
+  color: var(--fondo);
+  font-weight: 600;
+}
+
+.segmento button.activo {
+  background: var(--fondo);
+  color: var(--azul);
+}
+
+.campo {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.campo > span {
+  font-size: 0.88rem;
+  color: var(--azul-suave);
+  font-weight: 600;
+}
+
+.campo input,
+.campo select {
+  min-height: var(--alto-control);
+  padding: 0 12px;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-chico);
+  background: #fff;
+  font-size: 1rem;
+}
+
+.campo input[aria-invalid='true'] {
+  border-color: var(--chile);
+}
+
+.acciones-columna {
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.acciones-fila {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.cabecera-panel {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.vacio,
+.vacio-linea {
+  color: var(--azul-suave);
+}
+
+.vacio h2 {
+  margin-top: 4px;
+}
+
+.vacio .primario,
+.vacio .secundario {
+  margin-top: 10px;
+}
+
+/* ───────────── Productor: mapa + panel ───────────── */
+.productor {
+  display: grid;
+  grid-template-rows: 46dvh auto;
+}
+
+/* Mapa: normal, ampliado (al dibujar) o plegado (el usuario lo oculta). */
+.productor.mapa-grande {
+  grid-template-rows: 72dvh auto;
+}
+
+.productor.mapa-plegado {
+  grid-template-rows: 0 auto;
+}
+
+.productor.mapa-plegado .mapa-marco {
+  overflow: hidden;
+}
+
+.boton-mapa {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 3;
+  min-height: 36px;
+  padding: 0 12px;
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  box-shadow: var(--sombra);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.boton-mapa-mostrar {
+  width: 100%;
+  margin-bottom: 12px;
+  min-height: 40px;
+  background: var(--azul-medio);
+  color: #fff;
+  font-weight: 600;
+}
+
+.mapa-marco {
+  position: relative;
+  min-height: 0;
+}
+
+.mapa {
+  position: absolute;
+  inset: 0;
+}
+
+.pista-mapa {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 12px;
+  z-index: 2;
+  background: var(--azul);
+  color: var(--fondo);
+  border-radius: var(--radio-chico);
+  padding: 10px 14px;
+  font-size: 0.92rem;
+  box-shadow: var(--sombra);
+}
+
+.panel {
+  background: var(--fondo);
+  padding: 16px;
+}
+
+.lista-parcelas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.fila-parcela {
+  width: 100%;
+  min-height: 60px;
+  display: grid;
+  grid-template-columns: 12px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  padding: 10px 14px;
+}
+
+.fila-parcela:hover {
+  border-color: var(--azul-suave);
+}
+
+.muestra {
+  width: 12px;
+  height: 36px;
+  border-radius: 4px;
+}
+
+.fila-texto {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.fila-texto strong {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fila-cifra {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* ───────────── Boleta de cosecha (firma visual) ───────────── */
+.boleta {
+  position: relative;
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 18px 18px 8px;
+}
+
+.boleta-cabeza {
+  display: grid;
+  gap: 2px;
+  padding-bottom: 12px;
+}
+
+.boleta-cabeza .enlace {
+  justify-self: start;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.boleta-cosecha {
+  padding: 4px 0 14px;
+}
+
+.cifra {
+  font-family: var(--fuente-datos);
+  font-size: clamp(2.6rem, 9vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--azul-medio);
+  font-variant-numeric: tabular-nums;
+}
+
+.cifra-unidad {
+  font-size: 0.45em;
+  color: var(--azul-suave);
+  letter-spacing: 0;
+}
+
+.cifra-etiqueta {
+  margin-top: 6px;
+  color: var(--azul-suave);
+  font-size: 0.95rem;
+}
+
+/* Corte perforado entre cosecha y datos */
+.corte {
+  position: relative;
+  border-top: 2px dashed var(--linea);
+  margin: 0 -18px;
+}
+
+.corte::before,
+.corte::after {
+  content: '';
+  position: absolute;
+  top: -11px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--fondo);
+  border: 1px solid var(--linea);
+}
+
+.corte::before {
+  left: -10px;
+}
+
+.corte::after {
+  right: -10px;
+}
+
+.datos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 14px 0 6px;
+}
+
+.datos dt {
+  font-size: 0.75rem;
+  color: var(--azul-suave);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.datos dd {
+  margin: 2px 0 0;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.bloque {
+  border-top: 1px solid var(--linea);
+  padding: 14px 0 6px;
+}
+
+.chips {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  background: var(--azul-claro);
+  color: var(--azul);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.chip.alerta {
+  background: var(--chile-suave);
+  color: var(--chile);
+}
+
+.alerta-texto {
+  color: var(--chile);
+  font-weight: 600;
+}
+
+.oferta-activa {
+  background: var(--fondo);
+  border-radius: var(--radio-chico);
+  padding: 10px 12px;
+}
+
+.fila-precio {
+  display: grid;
+  gap: 0;
+}
+
+.fila-precio .primario {
+  margin-top: 12px;
+}
+
+.boleta-pie {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-top: 1px solid var(--linea);
+  margin: 10px -18px 0;
+  padding: 12px 18px 10px;
+}
+
+/* ───────────── Mercado (comprador) ───────────── */
+.mercado {
+  display: grid;
+  gap: 24px;
+  padding: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.columna {
+  min-width: 0;
+}
+
+.tarjetas {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+  display: grid;
+  gap: 12px;
+}
+
+.tarjeta-oferta,
+.tarjeta-contrato {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  padding: 16px;
+  box-shadow: var(--sombra);
+}
+
+.tarjeta-oferta h3,
+.tarjeta-contrato h3 {
+  margin-top: 2px;
+}
+
+.total {
+  display: grid;
+  justify-items: end;
+  align-content: center;
+  gap: 6px;
+  text-align: right;
+}
+
+.total strong {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.estado {
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--chile-suave);
+  color: var(--chile);
+}
+
+.estado.firmado {
+  background: var(--azul-claro);
+  color: var(--azul);
+}
+
+/* ───────────── Diálogo y aviso ───────────── */
+.velo {
+  position: fixed;
+  inset: 0;
+  background: rgb(15 42 74 / 0.45);
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  z-index: 10;
+}
+
+.dialogo {
+  width: min(440px, 100%);
+  background: var(--blanco);
+  border-radius: var(--radio);
+  padding: 20px;
+  box-shadow: var(--sombra);
+}
+
+.aviso {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  background: var(--azul);
+  color: var(--fondo);
+  padding: 12px 18px;
+  border-radius: 999px;
+  box-shadow: var(--sombra);
+  z-index: 20;
+  max-width: calc(100% - 32px);
+  text-align: center;
+  animation: entrar 0.25s ease-out;
+}
+
+@keyframes entrar {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+}
+
+/* ───────────── Escritorio ───────────── */
+@media (min-width: 900px) {
+  .app {
+    height: 100dvh;
+  }
+
+  /* Solo el mapa del productor usa altura fija; el comprador debe poder bajar completo. */
+  .principal {
+    overflow-y: auto;
+  }
+
+  .principal:has(.productor) {
+    overflow-y: auto;
+  }
+
+  /* Escritorio como Ganader AI: mapa enmarcado arriba y fichas debajo, en una columna centrada. */
+  .productor {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 440px auto;
+    height: auto;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .productor > .panel {
+    height: auto;
+    min-height: 0;
+  }
+
+  .productor.mapa-grande {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 620px auto;
+  }
+
+  .productor.mapa-plegado {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 0 auto;
+  }
+
+  .productor.mapa-plegado .mapa-marco {
+    overflow: hidden;
+  }
+
+  .mapa-marco {
+    min-height: 0;
+  }
+
+  .panel {
+    overflow-y: auto;
+    padding: 20px 0;
+  }
+
+  .mercado {
+    padding: 24px;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .datos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* ───────────── Medición tipo potreoGPS (mira central) ───────────── */
+.mapa-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.mira {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.mira::before,
+.mira::after {
+  content: '';
+  position: absolute;
+  background: var(--azul);
+  box-shadow: 0 0 0 1px var(--fondo);
+}
+
+.mira::before {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+}
+
+.mira::after {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transform: translateY(-50%);
+}
+
+.mira span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid var(--acento);
+  background: var(--blanco);
+}
+
+.barra-medicion {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+  background: var(--azul);
+  color: var(--fondo);
+  border-radius: var(--radio-chico);
+  padding: 10px 12px;
+  box-shadow: var(--sombra);
+}
+
+.barra-medicion > div {
+  text-align: center;
+}
+
+.barra-medicion strong {
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.etiqueta-mini {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--azul-claro);
+}
+
+.dibujo .grande {
+  min-height: 56px;
+  font-size: 1.05rem;
+  margin-top: 14px;
+}
+
+.fila-vertices {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.fila-vertices button {
+  flex: 1;
+}
+
+.dibujo .acciones-fila button {
+  flex: 1;
+}
+
+.pie-accion {
+  margin-top: 18px;
+}
+
+.segmento-claro {
+  display: inline-flex;
+  margin-top: 12px;
+  padding: 3px;
+  border: 1px solid var(--linea);
+  border-radius: 999px;
+  background: var(--blanco);
+}
+
+.segmento-claro button {
+  min-height: 36px;
+  border-radius: 999px;
+  border: 0;
+  padding: 0 14px;
+  color: var(--azul-suave);
+  font-weight: 600;
+}
+
+.segmento-claro button.activo {
+  background: var(--azul-medio);
+  color: #fff;
+}
+
+.lista-importar {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  max-height: 40dvh;
+  overflow-y: auto;
+}
+
+.lista-importar label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 10px;
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-chico);
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.lista-importar input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  accent-color: var(--azul-medio);
+}
+
+.colores {
+  border: 0;
+  margin: 12px 0 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.colores legend {
+  font-size: 0.88rem;
+  color: var(--azul-suave);
+  font-weight: 600;
+  padding: 0;
+  margin-bottom: 6px;
+}
+
+.muestras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.muestra-color {
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid var(--blanco);
+  box-shadow: 0 0 0 1px var(--linea);
+}
+
+.muestra-color.activa {
+  box-shadow: 0 0 0 3px var(--blanco), 0 0 0 5px var(--azul);
+}
+
+.estado-parcela {
+  display: inline-block;
+  width: max-content;
+  margin-top: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+/* ───────────── Movimiento reducido ───────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ───────────── Manejo y cosecha ───────────── */
+.casilla {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  font-weight: 600;
+  min-height: var(--alto-control);
+}
+
+.casilla input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--azul-medio);
+}
+
+.fila-dos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.subtitulo {
+  font-family: var(--fuente-texto);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--acento);
+  margin: 16px 0 0;
+}
+
+.comparacion {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radio-chico);
+  background: var(--fondo);
+  border: 1px solid var(--linea);
+  font-size: 0.95rem;
+}
+
+.campo[aria-disabled='true'] input,
+.campo input:disabled {
+  opacity: 0.5;
+}
+
+/* ───────────── Ajuste de ancho en el panel (evita campos desbordados) ───────────── */
+.panel {
+  overflow-x: hidden;
+}
+
+.panel .campo input,
+.panel .campo select,
+.fila-dos input,
+.fila-dos select {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.fila-dos > * {
+  min-width: 0;
+}
+
+.panel .campo {
+  min-width: 0;
+}
+
+/* ───────────── Comprador: ficha de oferta ───────────── */
+.filtros {
+  margin-top: 12px;
+}
+
+.oferta-cuerpo {
+  min-width: 0;
+  flex: 1 1 260px;
+}
+
+.ficha-oferta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 16px;
+  margin: 10px 0 0;
+}
+
+.ficha-oferta dt {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--azul-suave);
+}
+
+.ficha-oferta dd {
+  margin: 2px 0 0;
+  font-weight: 600;
+}
+
+.origen {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--azul-suave);
+}
+
+.confirmar {
+  display: grid;
+  gap: 8px;
+  max-width: 260px;
+}
+
+/* ───────────── Contratos: pasos del flujo ───────────── */
+.contrato {
+  display: grid;
+  gap: 10px;
+}
+
+.contrato-cabeza {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.paso {
+  border-top: 1px solid var(--linea);
+  padding-top: 10px;
+  display: grid;
+  gap: 6px;
+}
+
+.paso-titulo {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--acento);
+}
+
+.paso-linea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.firmas-estado {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip-ok,
+.chip-pend {
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.chip-ok {
+  background: var(--azul-medio);
+  color: #fff;
+}
+
+.chip-pend {
+  background: var(--fondo);
+  color: var(--azul-suave);
+  border: 1px solid var(--linea);
+}
+
+.estado-firma-parcial {
+  background: var(--fondo);
+  color: var(--azul-medio);
+  border: 1px solid var(--azul-medio);
+}
+
+.estado-pendiente {
+  background: var(--fondo);
+  color: var(--azul-suave);
+  border: 1px solid var(--linea);
+}
+
+.estado-firmado,
+.estado-entregado,
+.estado-pagado {
+  background: var(--azul);
+  color: #fff;
+}
+
+.formulario-partes {
+  display: grid;
+  gap: 4px;
+}
+
+.pendiente-legal {
+  background: #fff3c4;
+}
+
+/* ───────────── Firma en pantalla ───────────── */
+.firma-pad {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.firma-lienzo {
+  width: 100%;
+  height: 170px;
+  touch-action: none;
+  background: #fff;
+  border: 1px dashed var(--azul-suave);
+  border-radius: var(--radio-chico);
+  cursor: crosshair;
+}
+
+.firma-linea {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 34px;
+  border-top: 1px solid var(--linea);
+  padding-top: 4px;
+  font-size: 0.78rem;
+  color: var(--azul-suave);
+  pointer-events: none;
+}
+
+.firma-dialogo {
+  width: min(520px, 100%);
+  max-height: 92dvh;
+  overflow-y: auto;
+}
+
+.firma-fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.firma-miniatura {
+  height: 36px;
+  width: auto;
+  border: 1px solid var(--linea);
+  border-radius: 6px;
+  background: #fff;
+}
+
+/* ───────────── Comprador: referencia de precio ───────────── */
+.referencia {
+  display: grid;
+  gap: 2px;
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  background: var(--azul);
+  color: #fff;
+  border-radius: var(--radio-chico);
+}
+
+.referencia .etiqueta-mini {
+  color: var(--azul-claro);
+}
+
+.referencia strong {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.referencia .texto-suave {
+  color: #cfdcec;
+}
+
+.precio-badge {
+  display: inline-block;
+  margin: 8px 0 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.precio-badge.dentro {
+  background: var(--azul-medio);
+  color: #fff;
+}
+
+.precio-badge.arriba,
+.precio-badge.abajo {
+  background: var(--fondo);
+  color: var(--azul);
+  border: 1px solid var(--azul-medio);
+}
+
+.precio-badge.neutro {
+  background: var(--fondo);
+  color: var(--azul-suave);
+  border: 1px solid var(--linea);
+}
+
+/* ───────────── Verificación del contrato ───────────── */
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+  font-size: 0.88rem;
+}
+
+.checklist li.ok span:first-child {
+  color: var(--azul-medio);
+  font-weight: 700;
+}
+
+.checklist li.error {
+  color: var(--chile);
+}
+
+.checklist li.error span:first-child {
+  font-weight: 700;
+}
+
+.checklist li.aviso {
+  color: var(--azul-suave);
+}
+
+/* ───────────── Acceso ───────────── */
+.acceso {
+  min-height: 60dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+}
+
+.tarjeta-acceso {
+  width: min(420px, 100%);
+  background: var(--blanco);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  padding: 24px;
+  box-shadow: var(--sombra);
+}
+
+/* ───────────── Color de la parcela (cualquier tono) ───────────── */
+.selector-color {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.selector-color input[type='color'] {
+  width: 48px;
+  height: 40px;
+  padding: 2px;
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-chico);
+  background: var(--blanco);
+  cursor: pointer;
+}
+
+/* ───────────── Agregar punto en la mira (botón rojo sobre la franja azul) ───────────── */
+.boton-agregar {
+  position: absolute;
+  left: 50%;
+  bottom: 104px;
+  transform: translateX(-50%);
+  z-index: 3;
+  min-height: 52px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: 999px;
+  background: #c62828;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  box-shadow: 0 6px 18px -6px rgb(0 0 0 / 0.4);
+}
+
+.boton-agregar:active {
+  background: #a31f1f;
+}
+
+
+/* ───────────── Ajustes como icono en la barra ───────────── */
+.icono-ajustes {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  min-height: 48px;
+  padding: 0;
+  border: 1px solid rgb(246 241 228 / 0.35);
+  background: transparent;
+  color: var(--fondo);
+  border-radius: 50%;
+}
+
+.icono-ajustes:hover {
+  border-color: var(--azul-claro);
+  color: var(--azul-claro);
+}
+
+/* ───────────── Barra en una fila en el celular ───────────── */
+@media (max-width: 480px) {
+  .cabecera {
+    flex-wrap: nowrap;
+    gap: 6px;
+    padding: 6px 8px;
+  }
+
+  .marca {
+    margin-right: 0;
+    gap: 0;
+  }
+
+  .marca h1 {
+    display: none;
+  }
+
+  .segmento {
+    flex: 1 1 auto;
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .segmento button {
+    min-height: 30px;
+    padding: 0 8px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .sello {
+    width: 34px;
+    height: 34px;
+  }
+
+  .icono-ajustes {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+  }
+}
+
+/* ───────────── Dibujo: navegación entre vértices solo en computadora ───────────── */
+.nav-vertices {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .nav-vertices {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 12px;
+  }
+}
+
+/* ───────────── Alcance de la verificación ───────────── */
+.alcance-verificacion {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  background: var(--fondo);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio-chico);
+}
+
+/* ───────────── Ficha simplificada: secciones plegables ───────────── */
+.plegable > summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--azul);
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.plegable[open] > summary {
+  margin-bottom: 8px;
+}
+
+/* ───────────── Primeros pasos ───────────── */
+.pasos-inicio {
+  margin: 8px 0 12px;
+  padding-left: 20px;
+  display: grid;
+  gap: 4px;
+  color: var(--azul-suave);
+}
+
+.siguiente-paso {
+  margin: 8px 0 0;
+  padding: 8px 12px;
+  border-radius: var(--radio-chico);
+  background: var(--fondo);
+  border-left: 3px solid var(--azul-medio);
+  font-size: 0.9rem;
+}
+
+/* Panel de imagen satelital sobre el mapa de parcelas (igual que en Ganader AI) */
+.mapa-satelite-panel {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  width: min(380px, calc(100% - 20px));
+  z-index: 3;
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgb(255 255 255 / 0.96);
+  box-shadow: 0 4px 16px rgb(10 31 58 / 0.25);
+}

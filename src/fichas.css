@@ -1,0 +1,201 @@
+/* Tarjetas de parcela y marco del mapa: estructura de panel de seguimiento, con la paleta de Agricultura Inteligente. */
+
+/* Marco del mapa: esquinas redondeadas, borde y sombra, como el mapa de Ganader AI. */
+.mapa-marco {
+  border-radius: var(--radio);
+  overflow: hidden;
+  border: 1px solid var(--linea);
+  box-shadow: var(--sombra);
+  background: var(--blanco);
+}
+
+/* Lista de tarjetas */
+.fichas-parcela {
+  list-style: none;
+  margin: 12px 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 700px) {
+  .fichas-parcela {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+}
+
+.ficha-parcela {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+  border-radius: var(--radio);
+  background: var(--blanco);
+  border: 1.5px solid var(--linea);
+  box-shadow: var(--sombra);
+}
+
+.ficha-parcela.activa {
+  border-color: var(--azul-medio);
+}
+
+.ficha-parcela-cabeza {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ficha-parcela-cabeza h2 {
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+.ficha-parcela-cabeza .grow {
+  min-width: 0;
+  flex: 1;
+}
+
+.ficha-parcela-cabeza p {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+}
+
+.chip-estado {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--fondo);
+  color: var(--azul-medio);
+  white-space: nowrap;
+}
+
+.chip-estado.lista {
+  background: #dcf0e2;
+  color: #1f5d3a;
+}
+
+.chip-estado.sin-sembrar {
+  color: var(--azul-suave);
+}
+
+/* Ciclo del cultivo: barra con fechas a los extremos */
+.ciclo {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border-radius: var(--radio-chico);
+  background: var(--fondo);
+}
+
+.ciclo-titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.ciclo-titulo strong {
+  font-size: 0.85rem;
+  color: var(--azul-medio);
+}
+
+.ciclo-barra {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--linea);
+  overflow: hidden;
+}
+
+.ciclo-barra span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--azul-medio);
+  transition: width 0.4s ease;
+}
+
+.ciclo-fechas {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  color: var(--azul-suave);
+}
+
+/* Aviso principal de la parcela */
+.aviso-parcela {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: var(--radio-chico);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid;
+}
+
+.aviso-parcela.alerta {
+  background: var(--chile-suave);
+  color: var(--chile);
+  border-color: #f0c4bf;
+}
+
+.aviso-parcela.info {
+  background: #e7f0fb;
+  color: var(--azul-medio);
+  border-color: #c5d8ee;
+}
+
+/* Clima en tres tiles */
+.clima-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.clima-tiles > div {
+  display: grid;
+  gap: 2px;
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--fondo);
+  text-align: center;
+}
+
+.clima-tiles small {
+  font-size: 0.72rem;
+  color: var(--azul-suave);
+  font-weight: 600;
+}
+
+.clima-tiles strong {
+  font-family: var(--fuente-datos);
+  font-size: 0.95rem;
+  color: var(--azul-medio);
+}
+
+.ficha-parcela-acciones {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ficha-parcela-acciones .primario {
+  flex: 1 1 auto;
+}
+
+/* Sin mapa (fuera de marcar el área): solo la lista de parcelas, a todo el ancho. */
+.productor.sin-mapa {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto;
+  height: auto;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.productor.sin-mapa > .panel {
+  height: auto;
+}
