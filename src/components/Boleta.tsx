@@ -8,6 +8,7 @@ import { EditarDatos, type DatosParcela } from './EditarDatos';
 import { precioSugerido, referenciaPrecio } from '../lib/precios';
 import { siguientePaso } from '../lib/siguientePaso';
 import { enlaceWhatsapp } from '../lib/whatsapp';
+import { SaludCultivo } from './SaludCultivo';
 
 /** Mensaje inicial hacia el comprador que reservó. */
 function mensajeParaComprador(o: Oferta): string {
@@ -95,6 +96,8 @@ export function Boleta({
       </span>
 
       <p className="siguiente-paso">{siguientePaso(p, oferta)}</p>
+
+      <SaludCultivo parcela={p} />
 
       <section className="boleta-cosecha" aria-label="Cosecha estimada">
         <p className="cifra" aria-live="polite">

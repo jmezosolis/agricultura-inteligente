@@ -199,3 +199,15 @@
 .productor.sin-mapa > .panel {
   height: auto;
 }
+
+/* Salud del cultivo: imagen satelital de la parcela (lógica de Ganader AI). */
+.salud-imagen {
+  display: block;
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
+  margin-top: 10px;
+  border-radius: var(--radio-chico);
+  background: var(--fondo);
+  border: 1px solid var(--linea);
+}
